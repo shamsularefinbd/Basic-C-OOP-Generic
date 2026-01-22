@@ -1,0 +1,7 @@
+D:\Homework\C# EX\Fainal_Exam\Evidence_02\bin\Debug\Evidence_02.exe.config
+D:\Homework\C# EX\Fainal_Exam\Evidence_02\bin\Debug\Evidence_02.exe
+D:\Homework\C# EX\Fainal_Exam\Evidence_02\bin\Debug\Evidence_02.pdb
+D:\Homework\C# EX\Fainal_Exam\Evidence_02\obj\Debug\Evidence_02.csproj.AssemblyReference.cache
+D:\Homework\C# EX\Fainal_Exam\Evidence_02\obj\Debug\Evidence_02.csproj.CoreCompileInputs.cache
+D:\Homework\C# EX\Fainal_Exam\Evidence_02\obj\Debug\Evidence_02.exe
+D:\Homework\C# EX\Fainal_Exam\Evidence_02\obj\Debug\Evidence_02.pdb

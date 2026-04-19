@@ -1,81 +1,157 @@
+🚗 C# Fundamentals & OOP Evidence Project
+
+A collection of C# programs demonstrating core language features and Object-Oriented Programming principles, structured into two evidence modules.
+
 ---
 
-# C# Fundamentals and OOP Evidence Project
+## 👤 Author
 
-This repository contains a collection of C# programs developed to demonstrate core programming concepts and Object-Oriented Programming (OOP) principles. The project is divided into two primary sections: language fundamentals and a vehicle management model.
+**Shamsul Arefin**
 
-## 👤 Author Information
-
-* **Name:** Shamsul Arefin 
 ---
 
 ## 📂 Project Structure
 
-### 1. Evidence_01: C# Language Fundamentals
+```
+EXAM.slnx
+├── Evidence_01/          # C# Language Fundamentals
+│   └── Program.cs
+└── Evidence_02/          # OOP Vehicle Model
+    └── Model/
+        ├── Vehicel.cs
+        ├── TwoWheeler.cs
+        ├── IExteriorDesign.cs
+        ├── IInteriorDesign.cs
+        └── VehicelType.cs
+```
 
-The `Program.cs` file serves as a comprehensive demonstration of basic to intermediate C# features. Key concepts implemented include:
+---
 
-* **Error Handling:** Implementation of `try-catch-finally` blocks and custom exception throwing.
-* **Arithmetic & Logic:** Demonstrations of arithmetic operators, prefix/postfix operations, and short-circuit logic (`&&`, `||`).
-* **Data Types:** Usage of primitive data types (string, int, decimal, float, long, double, bool), `DateTime`, and anonymous types.
-* **Control Flow:** Examples of decision-making (`if-else`, `switch`) and various loops (`while`, `do-while`, `for`, `foreach`).
-* **Method Parameters:** Advanced method signatures using named arguments, optional parameters, and return values.
-* **Context Management:** Use of `checked` and `unchecked` blocks to handle integral-type arithmetic overflow.
+## 📘 Evidence_01 — C# Language Fundamentals
 
-### 2. Evidence_02: Object-Oriented Design (Vehicle Model)
+`Program.cs` covers a broad range of C# language features:
 
-This module demonstrates the application of OOP principles such as **Inheritance**, **Interfaces**, and **Encapuslation**.
+| Topic | Details |
+|---|---|
+| **Error Handling** | `try-catch-finally` blocks, custom exception throwing |
+| **Arithmetic & Logic** | Arithmetic operators, prefix/postfix increment, short-circuit `&&` / `\|\|` |
+| **Data Types** | `string`, `int`, `decimal`, `float`, `long`, `double`, `bool`, `DateTime`, anonymous types |
+| **Control Flow** | `if-else`, `switch`, `while`, `do-while`, `for`, `foreach` |
+| **Method Parameters** | Named arguments, optional parameters, return values |
+| **Overflow Handling** | `checked` / `unchecked` blocks for integral arithmetic overflow |
 
-#### Key Components:
+### Highlight — Checked vs Unchecked
 
-* **`Vehicel` (Base Class):** Defines common properties for all vehicles, including `ModelName`, `YearMake`, `CC`, and `VehicelType`.
-* **`TwoWheeler` (Derived Class):** Inherits from `Vehicel` and implements specific properties like `StartingMethod`, `Mileage`, and braking systems.
-* **Interfaces:**
-* `IExteriorDesign`: Defines methods for adding and retrieving exterior design specifications.
-* `IInteriorDesign`: Provides a contract for interior design management.
+```csharp
+// Throws OverflowException at runtime
+checked {
+    int a = int.MaxValue;
+    a++;
+}
 
+// Silently wraps around (no exception)
+unchecked {
+    int b = int.MaxValue;
+    b++;
+}
+```
 
-* **`VehicelType` (Enum):** Categorizes vehicles into `Personal`, `Family`, `Sports`, or `Racing`.
+---
+
+## 🚙 Evidence_02 — Object-Oriented Vehicle Model
+
+Demonstrates core OOP principles: **Inheritance**, **Interfaces**, and **Encapsulation**.
+
+### Class Diagram
+
+```
+          «enum»
+        VehicelType
+   Personal | Family | Sports | Racing
+                  |
+           Vehicel (Base)
+      ModelName, YearMake, CC, VehicelType
+                  |
+            TwoWheeler
+   StartingMethod, Mileage, BrakingSystem
+      implements IExteriorDesign
+      implements IInteriorDesign
+```
+
+### Key Components
+
+#### `Vehicel` — Base Class
+Defines shared properties common to all vehicle types:
+- `ModelName` — Name/model identifier
+- `YearMake` — Manufacturing year
+- `CC` — Engine displacement
+- `VehicelType` — Enum-based category
+
+#### `TwoWheeler` — Derived Class
+Inherits from `Vehicel` and extends it with:
+- `StartingMethod` — e.g. kick-start / self-start
+- `Mileage` — Fuel efficiency
+- Braking system details
+
+#### Interfaces
+
+| Interface | Responsibility |
+|---|---|
+| `IExteriorDesign` | Contract for adding and retrieving exterior design specs |
+| `IInteriorDesign` | Contract for managing interior design details |
+
+#### `VehicelType` — Enum
+
+```csharp
+public enum VehicelType {
+    Personal,
+    Family,
+    Sports,
+    Racing
+}
+```
+
+### Highlight — Interface via `params`
+
+```csharp
+public void AddExteriorDesign(params string[] design) {
+    this.ex_Design.AddRange(design);
+}
+```
+
+Using `params` allows callers to pass any number of design elements in a single method call, backed by a `List<string>` for dynamic management.
 
 ---
 
 ## 🛠️ Requirements & Setup
 
-* **.NET SDK:** Compatible with .NET Framework or .NET Core (depending on your environment).
-* **IDE:** Visual Studio 2022 or VS Code.
+- [.NET SDK](https://dotnet.microsoft.com/download) (.NET Framework or .NET Core)
+- [Visual Studio 2022](https://visualstudio.microsoft.com/) or [VS Code](https://code.visualstudio.com/)
 
-### How to Run
+### Getting Started
 
-1. Clone the repository.
-2. Open the `EXAM.slnx` solution file.
+```bash
+# 1. Clone the repository
+git clone https://github.com/<your-username>/<repo-name>.git
 
+# 2. Open the solution
+#    Open EXAM.slnx in Visual Studio 2022
 
-3. Set `Evidence_01` as the startup project to view the fundamentals console output.
-4. Build the solution to ensure all dependencies and interfaces in `Evidence_02.Model` are correctly linked.
+# 3. Run Evidence_01
+#    Set Evidence_01 as the startup project and press F5
+
+# 4. Build Evidence_02
+#    Build the full solution to resolve all interface dependencies
+```
 
 ---
 
-## 📝 Code Highlights
+## 🧠 OOP Concepts Demonstrated
 
-### Checked vs Unchecked Example
-
-The project demonstrates how C# handles memory overflow:
-
-```csharp
-checked {
-    int a = int.MaxValue;
-    a++; // This will throw an OverflowException
-}
-
-```
-
-### Interface Implementation
-
-The `TwoWheeler` class utilizes a `List<string>` to manage design elements dynamically via the `params` keyword:
-
-```csharp
-public void AddExtetiorDesign(params string[] Design) {
-    this.ex_Design.AddRange(Design);
-}
-
-```
+| Concept | Where Applied |
+|---|---|
+| **Inheritance** | `TwoWheeler` extends `Vehicel` |
+| **Encapsulation** | Private fields exposed via public properties |
+| **Interface Segregation** | Separate `IExteriorDesign` and `IInteriorDesign` contracts |
+| **Enumerations** | `VehicelType` for type-safe categorization |
+| **Collections** | `List<string>` for dynamic design element storage |
